@@ -62,5 +62,6 @@ TXDIFF=$(($TXDIF % 10 ))
 TXDIFI=$(( $TXDIF / 10 ))
 TXDIF=$(echo  "$TXDIFI.$TXDIFF")
 
+
 echo "$RXDIF $SPEEDD $TXDIF $SPEEDU"
 
