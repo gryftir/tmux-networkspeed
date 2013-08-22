@@ -1,0 +1,41 @@
+#!/bin/bash
+RXDIF=2844
+TXDIF=4718592
+
+SPEEDU=" ^Ki/s"
+SPEEDD=" vKi/s"
+RXDIFI=""
+RXDIFF=""
+TXDIFI=""
+TXDIFF=""
+RXDIF=$(($RXDIF * 10))
+TXDIF=$(($TXDIF * 10))
+if [ $RXDIF -ge 1024 ]; then
+	SPEEDD=" vMi/s"
+	RXDIF=$(echo $((RXDIF / 1024 )) )
+fi
+
+if [ $TXDIF -ge 1024 ]; then
+	SPEEDU=" vMi/s"
+	TXDIF=$(echo $((TXDIF / 1024 )) )
+fi
+
+if [ $RXDIF -ge 1024 ]; then
+	SPEEDD=" vGi/s"
+	RXDIF=$(echo $((RXDIF / 1024 )) )
+fi
+
+if [ $TXDIF -ge 1024 ]; then
+	SPEEDU=" vGi/s"
+	TXDIF=$(echo $((TXDIF / 1024 )) )
+fi
+
+RXDIFF=$(($RXDIF % 10 ))
+RXDIFI=$(( ($RXDIF - $RXDIFF) / 10 ))	
+RXDIF=$( echo  "$RXDIFI.$RXDIFF" )
+
+TXDIFF=$(($TXDIF % 10 ))
+TXDIFI=$(( ($TXDIF - $TXDIFF) / 10 ))	
+TXDIF=$(echo  "$TXDIFI.$TXDIFF")
+	
+echo "$RXDIF$SPEEDD $TXDIF$SPEEDU"
