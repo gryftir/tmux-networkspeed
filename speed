@@ -56,11 +56,19 @@ fi
 
 RXDIFF=$(($RXDIF % 10 ))
 RXDIFI=$(( $RXDIF / 10 ))
-RXDIF=$( echo  "$RXDIFI.$RXDIFF" )
+RXDIF="$RXDIFI"
+
+if [ $RXDIFF -ne 0 ]; then
+	RXDIF=$( echo  "$RXDIFI.$RXDIFF" )
+fi
 
 TXDIFF=$(($TXDIF % 10 ))
 TXDIFI=$(( $TXDIF / 10 ))
-TXDIF=$(echo  "$TXDIFI.$TXDIFF")
+TXDIF="$TXDIFI"
+
+if [ $TXDIFF -ne 0 ]; then
+	TXDIF=$( echo  "$TXDIFI.$TXDIFF" )
+fi
 
 
 echo "$RXDIF $SPEEDD $TXDIF $SPEEDU"

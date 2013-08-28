@@ -32,8 +32,11 @@ fi
 
 TXDIFF=$(($TXDIF % 10 ))
 TXDIFI=$(( $TXDIF / 10 ))
-TXDIF=$(echo  "$TXDIFI.$TXDIFF")
+TXDIF="$TXDIFI"
 
+if [ $TXDIFF -ne 0 ]; then
+	TXDIF=$( echo  "$TXDIFI.$TXDIFF" )
+fi
 
 echo "$TXDIF $SPEEDU"
 

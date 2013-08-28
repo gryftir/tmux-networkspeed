@@ -28,11 +28,13 @@ if [ $RXDIF -ge 10240 ]; then
 	SPEEDD="vGi/s"
 	RXDIF=$(echo $((RXDIF / 10240 )) )
 fi
-
 RXDIFF=$(($RXDIF % 10 ))
 RXDIFI=$(( $RXDIF / 10 ))
-RXDIF=$( echo  "$RXDIFI.$RXDIFF" )
+RXDIF="$RXDIFI"
 
+if [ $RXDIFF -ne 0 ]; then
+	RXDIF=$( echo  "$RXDIFI.$RXDIFF" )
+fi
 
 echo "$RXDIF $SPEEDD"
 
