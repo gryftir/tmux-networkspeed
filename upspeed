@@ -1,0 +1,39 @@
+#!/bin/bash
+TXB=0
+for txbytes in /sys/class/net/*/statistics/tx_bytes ; do
+  let TXB+=$(<$txbytes)
+done
+
+sleep 2
+
+TXBN=0
+for txbytes in /sys/class/net/*/statistics/tx_bytes ; do
+  let TXBN+=$(<$txbytes)
+done
+#divide by two for the period, multiply by 10 to allow a correct decimal place
+TXDIF=$(echo $(((TXBN - TXB) * 5  )))
+
+SPEEDU="^B/s"
+
+if [ $TXDIF -ge 10240 ]; then
+	SPEEDU="vKi/s"
+	TXDIF=$(echo $((TXDIF / 10240 )) )
+fi
+
+if [ $TXDIF -ge 10240 ]; then
+	SPEEDU="vMi/s"
+	TXDIF=$(echo $((TXDIF / 10240 )) )
+fi
+
+if [ $TXDIF -ge 10240 ]; then
+	SPEEDU="vGi/s"
+	TXDIF=$(echo $((TXDIF / 10240 )) )
+fi
+
+TXDIFF=$(($TXDIF % 10 ))
+TXDIFI=$(( $TXDIF / 10 ))
+TXDIF=$(echo  "$TXDIFI.$TXDIFF")
+
+
+echo "$TXDIF $SPEEDU"
+
