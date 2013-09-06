@@ -16,17 +16,17 @@ TXDIF=$(echo $(((TXBN - TXB) * 5  )))
 SPEEDU="^B/s"
 
 if [ $TXDIF -ge 10240 ]; then
-	SPEEDU="vKi/s"
+	SPEEDU="^Ki/s"
 	TXDIF=$(echo $((TXDIF / 10240 )) )
 fi
 
 if [ $TXDIF -ge 10240 ]; then
-	SPEEDU="vMi/s"
+	SPEEDU="^Mi/s"
 	TXDIF=$(echo $((TXDIF / 10240 )) )
 fi
 
 if [ $TXDIF -ge 10240 ]; then
-	SPEEDU="vGi/s"
+	SPEEDU="^Gi/s"
 	TXDIF=$(echo $((TXDIF / 10240 )) )
 fi
 
