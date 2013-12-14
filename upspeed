@@ -13,21 +13,21 @@ done
 #divide by two for the period, multiply by 10 to allow a correct decimal place
 TXDIF=$(echo $(((TXBN - TXB) * 5  )))
 
-SPEEDU="^B/s"
+SPEEDU="↑B/s"
 
 if [ $TXDIF -ge 10240 ]; then
-	SPEEDU="^Ki/s"
-	TXDIF=$(echo $((TXDIF / 10240 )) )
+	SPEEDU="↑Ki/s"
+	TXDIF=$(echo $((TXDIF / 1024 )) )
 fi
 
 if [ $TXDIF -ge 10240 ]; then
-	SPEEDU="^Mi/s"
-	TXDIF=$(echo $((TXDIF / 10240 )) )
+	SPEEDU="↑Mi/s"
+	TXDIF=$(echo $((TXDIF / 1024 )) )
 fi
 
 if [ $TXDIF -ge 10240 ]; then
-	SPEEDU="^Gi/s"
-	TXDIF=$(echo $((TXDIF / 10240 )) )
+	SPEEDU="↑Gi/s"
+	TXDIF=$(echo $((TXDIF / 1024 )) )
 fi
 
 TXDIFF=$(($TXDIF % 10 ))

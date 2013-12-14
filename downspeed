@@ -11,22 +11,22 @@ for rxbytes in /sys/class/net/*/statistics/rx_bytes ; do
   let RXBN+=$(<$rxbytes)
 done
 #divide by two for the period, multiply by 10 to allow a correct decimal place
-RXDIF=$(echo $(((RXBN - RXB) * 5  )))
+RXDIF=$(echo $(((RXBN - RXB) *5  )))
 
-SPEEDD="vB/s"
+SPEEDD="↓B/s"
 if [ $RXDIF -ge 10240 ]; then
-	SPEEDD="vKi/s"
-	RXDIF=$(echo $((RXDIF / 10240 )) )
+	SPEEDD="↓Ki/s"
+	RXDIF=$(echo $((RXDIF / 1024 )) )
 fi
 
 if [ $RXDIF -ge 10240 ]; then
-	SPEEDD="vMi/s"
-	RXDIF=$(echo $((RXDIF / 10240 )) )
+	SPEEDD="↓Mi/s"
+	RXDIF=$(echo $((RXDIF / 1024 )) )
 fi
 
 if [ $RXDIF -ge 10240 ]; then
-	SPEEDD="vGi/s"
-	RXDIF=$(echo $((RXDIF / 10240 )) )
+	SPEEDD="↓Gi/s"
+	RXDIF=$(echo $((RXDIF / 1024 )) )
 fi
 RXDIFF=$(($RXDIF % 10 ))
 RXDIFI=$(( $RXDIF / 10 ))
