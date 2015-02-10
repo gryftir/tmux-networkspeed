@@ -13,19 +13,19 @@ done
 #divide by two for the period, multiply by 10 to allow a correct decimal place
 RXDIF=$(echo $(((RXBN - RXB) *5  )))
 
-SPEEDD="↓B/s"
+SPEEDD="↓ B/s"
 if [ $RXDIF -ge 10240 ]; then
-	SPEEDD="↓Ki/s"
+	SPEEDD="↓ Ki/s"
 	RXDIF=$(echo $((RXDIF / 1024 )) )
 fi
 
 if [ $RXDIF -ge 10240 ]; then
-	SPEEDD="↓Mi/s"
+	SPEEDD="↓ Mi/s"
 	RXDIF=$(echo $((RXDIF / 1024 )) )
 fi
 
 if [ $RXDIF -ge 10240 ]; then
-	SPEEDD="↓Gi/s"
+	SPEEDD="↓ Gi/s"
 	RXDIF=$(echo $((RXDIF / 1024 )) )
 fi
 RXDIFF=$(($RXDIF % 10 ))
